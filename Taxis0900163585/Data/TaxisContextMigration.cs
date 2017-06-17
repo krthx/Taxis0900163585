@@ -20,6 +20,18 @@ namespace Taxis0900163585.Data
         public DbSet<SchemaInfo> SchemaInfoes { get; set; }
 
 
+        public TaxisContextMigration()
+            : base("name=TaxisContextMigration")
+        {
+            // the terrible hack
+            //var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;  
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+        }
+
         public void Initialize()
         {
             using (TaxisContextMigration courseraContext = new TaxisContextMigration())
